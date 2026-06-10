@@ -16,13 +16,10 @@
     <main>
         <p>Por favor, completa tus datos para que podamos asesorarte.</p>
         
+        <!-- Formulario generado por Salesforce -->
         <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00Dg500000AFFdk" method="POST">
             <input type="hidden" name="oid" value="00Dg500000AFFdk">
-            <!-- URL de redirección final a tu página de agradecimiento -->
             <input type="hidden" name="retURL" value="https://guillelazzari.github.io/genie-trips-web/thanks.html">
-            
-            <!-- Campo oculto corregido: name="LeadSource" coincide con la API de Salesforce -->
-            <input type="hidden" name="LeadSource" value="Web">
 
             <div class="form-group">
                 <label for="first_name">Nombre:</label><input id="first_name" maxlength="40" name="first_name" type="text" required />
@@ -61,6 +58,13 @@
                     <option value="Hoteles">Hoteles</option>
                     <option value="Tours">Tours</option>
                     <option value="Paquete completo">Paquete completo</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="lead_source">Origen del Contacto:</label>
+                <select id="lead_source" name="lead_source">
+                    <option value="Web">Web</option>
                 </select>
             </div>
 
