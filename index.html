@@ -8,7 +8,7 @@
     <script>
         function validarFormulario() {
             var phone = document.getElementById('phone').value;
-            // Expresión regular: solo números, longitud mínima 8 y máxima 15
+            // Expresión regular: solo números, longitud entre 8 y 15
             var phoneRegex = /^[0-9]{8,15}$/;
             
             if (!phoneRegex.test(phone)) {
@@ -32,6 +32,8 @@
         <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00Dg500000AFCHd" method="POST" onsubmit="return validarFormulario();">
             <input type="hidden" name="oid" value="00Dg500000AFCHd">
             <input type="hidden" name="retURL" value="https://guillelazzari.github.io/genie-trips-web/thanks.html">
+            
+            <input type="hidden" name="lead_source" value="Web">
 
             <div class="form-group">
                 <label for="first_name">Nombre:</label><input id="first_name" maxlength="40" name="first_name" type="text" required />
@@ -42,13 +44,12 @@
             </div>
 
             <div class="form-group">
-                <label for="email">Email (usa uno válido):</label>
-                <!-- HTML5 ya valida el formato de correo automáticamente -->
+                <label for="email">Email:</label>
                 <input id="email" maxlength="80" name="email" type="email" required />
             </div>
 
             <div class="form-group">
-                <label for="phone">Teléfono (ej: 5491122334455):</label>
+                <label for="phone">Teléfono (solo números):</label>
                 <input id="phone" maxlength="15" name="phone" type="text" required />
             </div>
 
