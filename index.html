@@ -6,15 +6,30 @@
     <title>Genie Trips | Contacto</title>
     <link rel="stylesheet" href="css/style.css">
     <script>
-        function validarFormulario() {
+        function prepararYValidar() {
+            // 1. Validar el teléfono
             var phone = document.getElementById('phone').value;
-            // Expresión regular: solo números, longitud entre 8 y 15
             var phoneRegex = /^[0-9]{8,15}$/;
             
             if (!phoneRegex.test(phone)) {
                 alert("Debes incluir el código de país y el código de área sin espacios ni símbolos. Introduce un número de teléfono válido.");
                 return false;
             }
+
+            // 2. Generar el valor para Company
+            var firstName = document.getElementById('first_name').value;
+            var lastName = document.getElementById('last_name').value;
+            var clientType = document.getElementById('00Ng500000Kg6ez').value;
+            
+            // Si no eligieron tipo, evitamos error
+            if (clientType === "") {
+                alert("Por favor, selecciona un Tipo de Cliente.");
+                return false;
+            }
+
+            var sufijo = (clientType === 'Particular') ? ' P' : ' E';
+            document.getElementById('company').value = firstName + " " + lastName + sufijo;
+
             return true;
         }
     </script>
@@ -29,11 +44,13 @@
     <main>
         <p>Por favor, completa tus datos para que podamos asesorarte.</p>
         
-        <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00Dg500000AFCHd" method="POST" onsubmit="return validarFormulario();">
+        <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00Dg500000AFCHd" method="POST" onsubmit="return prepararYValidar();">
             <input type="hidden" name="oid" value="00Dg500000AFCHd">
             <input type="hidden" name="retURL" value="https://guillelazzari.github.io/genie-trips-web/thanks.html">
             
             <input type="hidden" name="lead_source" value="Web">
+            
+            <input type="hidden" id="company" name="company" value="">
 
             <div class="form-group">
                 <label for="first_name">Nombre:</label><input id="first_name" maxlength="40" name="first_name" type="text" required />
@@ -55,7 +72,7 @@
 
             <div class="form-group">
                 <label for="00Ng500000Kg6ez">Tipo de Cliente:</label>
-                <select id="00Ng500000Kg6ez" name="00Ng500000Kg6ez">
+                <select id="00Ng500000Kg6ez" name="00Ng500000Kg6ez" required>
                     <option value="">--Seleccione--</option>
                     <option value="Particular">Particular</option>
                     <option value="Empresa">Empresa</option>
