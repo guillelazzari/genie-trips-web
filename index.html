@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script>
         function prepararYValidar() {
-            // 1. Validar el teléfono
+            // 1. Validar el formato del teléfono
             var phone = document.getElementById('phone').value;
             var phoneRegex = /^[0-9]{8,15}$/;
             
@@ -16,20 +16,19 @@
                 return false;
             }
 
-            // 2. Generar el valor para Company
+            // 2. Generar el valor para el campo oculto 'Company'
+            // Capturamos los campos necesarios
             var firstName = document.getElementById('first_name').value;
             var lastName = document.getElementById('last_name').value;
             var clientType = document.getElementById('00Ng500000Kg6ez').value;
             
-            // Si no eligieron tipo, evitamos error
-            if (clientType === "") {
-                alert("Por favor, selecciona un Tipo de Cliente.");
-                return false;
-            }
-
+            // Creamos el sufijo según el tipo de cliente
             var sufijo = (clientType === 'Particular') ? ' P' : ' E';
+            
+            // Asignamos el valor concatenado al campo oculto
             document.getElementById('company').value = firstName + " " + lastName + sufijo;
 
+            // El formulario se enviará solo si la validación del teléfono es correcta
             return true;
         }
     </script>
@@ -53,11 +52,13 @@
             <input type="hidden" id="company" name="company" value="">
 
             <div class="form-group">
-                <label for="first_name">Nombre:</label><input id="first_name" maxlength="40" name="first_name" type="text" required />
+                <label for="first_name">Nombre:</label>
+                <input id="first_name" maxlength="40" name="first_name" type="text" required />
             </div>
 
             <div class="form-group">
-                <label for="last_name">Apellido:</label><input id="last_name" maxlength="80" name="last_name" type="text" required />
+                <label for="last_name">Apellido:</label>
+                <input id="last_name" maxlength="80" name="last_name" type="text" required />
             </div>
 
             <div class="form-group">
@@ -81,7 +82,7 @@
 
             <div class="form-group">
                 <label for="00Ng500000Kg1iY">Tipo de Interés:</label>
-                <select id="00Ng500000Kg1iY" name="00Ng500000Kg1iY">
+                <select id="00Ng500000Kg1iY" name="00Ng500000Kg1iY" required>
                     <option value="">--Seleccione--</option>
                     <option value="Pasajes">Pasajes</option>
                     <option value="Hoteles">Hoteles</option>
