@@ -4,36 +4,41 @@ body {
     color: #0D1B2A; 
     font-family: sans-serif;
     text-align: center;
-    padding: 20px; /* Redujimos el padding global */
+    padding: 20px;
 }
 
 header img {
-    margin-bottom: 10px; /* Menos espacio tras el logo */
+    margin-bottom: 10px;
 }
 
 /* Estilos para el contenedor del formulario */
 form {
-    display: inline-block;
+    display: block; /* Cambiado para permitir centrado automático */
+    max-width: 320px; /* Ancho máximo para mantener la forma */
+    margin: 10px auto; /* Centrado automático */
     text-align: left;
-    margin-top: 10px; /* Más compacto */
 }
 
 .form-group { 
-    margin: 8px 0; /* Espacio reducido entre campos */
+    margin: 8px 0;
 }
 
 label { 
     display: block; 
-    margin-bottom: 2px; /* Más cerca del input */
+    margin-bottom: 2px;
     font-weight: bold;
-    font-size: 0.9em; /* Un poco más pequeño para elegancia */
+    font-size: 0.9em;
 }
 
+/* Ajustes responsivos para inputs y selects */
 input, select { 
     padding: 8px; 
-    width: 300px; /* Un poco más ancho para mejor proporción */
+    width: 100%; /* Ocupa todo el espacio del contenedor */
+    max-width: 300px; /* Límite para no estirarse demasiado */
     border: 1px solid #7ED6D0; 
     border-radius: 5px; 
+    box-sizing: border-box; /* Crucial para que el padding no rompa el ancho */
+    font-size: 16px; /* Evita que el celular haga zoom al tocar el campo */
 }
 
 input[type="submit"] {
@@ -42,7 +47,8 @@ input[type="submit"] {
     border: none;
     padding: 10px;
     cursor: pointer;
-    width: 318px; /* Ajustado al ancho del input + borde */
+    width: 100%; /* Adaptable */
+    max-width: 318px; /* Ajustado al tamaño de los inputs */
     margin-top: 15px;
     font-weight: bold;
     border-radius: 5px;
