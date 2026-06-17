@@ -6,18 +6,8 @@
     <title>Genie Trips | Contacto</title>
     <link rel="stylesheet" href="css/style.css">
     <script>
-        function prepararYValidar() {
-            // 1. Validar el formato del teléfono
-            var phone = document.getElementById('phone').value;
-            var phoneRegex = /^[0-9]{8,15}$/;
-            
-            if (!phoneRegex.test(phone)) {
-                alert("Debes incluir el código de país y el código de área sin espacios ni símbolos. Introduce un número de teléfono válido.");
-                return false;
-            }
-
-            // 2. Generar el valor para el campo oculto 'Company'
-            // Capturamos los campos necesarios
+        function prepararCompany() {
+            // Generar el valor para el campo oculto 'Company' solo antes de enviar
             var firstName = document.getElementById('first_name').value;
             var lastName = document.getElementById('last_name').value;
             var clientType = document.getElementById('00Ng500000Kg6ez').value;
@@ -27,8 +17,7 @@
             
             // Asignamos el valor concatenado al campo oculto
             document.getElementById('company').value = firstName + " " + lastName + sufijo;
-
-            // El formulario se enviará solo si la validación del teléfono es correcta
+            
             return true;
         }
     </script>
@@ -43,7 +32,7 @@
     <main>
         <p>Por favor, completa tus datos para que podamos asesorarte.</p>
         
-        <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00Dg500000AFCHd" method="POST" onsubmit="return prepararYValidar();">
+        <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00Dg500000AFCHd" method="POST" onsubmit="return prepararCompany();">
             <input type="hidden" name="oid" value="00Dg500000AFCHd">
             <input type="hidden" name="retURL" value="https://guillelazzari.github.io/genie-trips-web/thanks.html">
             
@@ -68,7 +57,10 @@
 
             <div class="form-group">
                 <label for="phone">Teléfono:</label>
-                <input id="phone" maxlength="15" name="phone" type="text" required />
+                <input id="phone" name="phone" type="text" maxlength="15" 
+                       pattern="[0-9]{8,15}" 
+                       title="Introduce un número de teléfono válido (8 a 15 dígitos, sin espacios ni símbolos)." 
+                       required />
             </div>
 
             <div class="form-group">
